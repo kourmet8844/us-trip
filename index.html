@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>🇺🇸 미서부 로드트립 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
-  window.TRIP_ID = "us-trip-2026";
+  window.TRIP_ID = "us-trip-2026-v2";
   window.FIREBASE_CONFIG = {
     apiKey: "AIzaSyDWZHLq6F9h0mjVih6Se-EJExIBD4KiBJ4",
     authDomain: "ustrip-3d895.firebaseapp.com",
@@ -455,7 +455,7 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
   <div class="dates">📅 2026. 9. 11 (금) — 9. 19 (토) · 8박 9일</div>
   <div class="flight-info">
     ✈️ OZ212 ICN 21:00 → SFO 15:30 &nbsp;|&nbsp; OZ203 LAX 23:00 → ICN 04:10+2<br>
-    🚗 알라모 SUV · SFO 픽업 → LAX 반납 · 총 ~900mi
+    🚗 알라모 SUV · 9/13 07:00 SFO 픽업 → 9/19 LAX 반납 · 총 ~1,000mi
   </div>
 </div>
 
@@ -490,9 +490,14 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
 
         <!-- route -->
         <polyline class="route-line"
-          points="107,281 162,270 240,274 263,260 314,342 374,353 454,368 447,391 364,444 302,497"/>
+          points="107,281 118,243 240,274 263,260 314,342 374,353 454,368 447,391 364,444 302,497"/>
 
         <!-- waypoints -->
+        <g class="mk" onclick="goDay(3)">
+          <circle cx="118" cy="243" r="5" fill="#7c5cfc" stroke="#0f1117" stroke-width="2"/>
+          <text x="128" y="240" fill="#9ca3b8" font-size="12" font-weight="600"
+                paint-order="stroke" stroke="#141826" stroke-width="3">나파밸리</text>
+        </g>
         <g class="mk" onclick="goDay(5)">
           <circle cx="314" cy="342" r="5" fill="#ff8c42" stroke="#0f1117" stroke-width="2"/>
           <text x="305" y="337" fill="#9ca3b8" font-size="12" font-weight="600" text-anchor="end"
@@ -516,7 +521,7 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
           <text x="92" y="285" fill="#e8eaf0" font-size="14" font-weight="700" text-anchor="end"
                 paint-order="stroke" stroke="#141826" stroke-width="3.5">샌프란시스코</text>
         </g>
-        <g class="mk" onclick="goDay(3)">
+        <g class="mk" onclick="goDay(4)">
           <circle class="pin" cx="240" cy="274" r="10" fill="#34d399" stroke="#0f1117" stroke-width="2.5"/>
           <text x="240" y="278.5" fill="#0f1117" font-size="11" font-weight="800" text-anchor="middle">2</text>
           <text x="240" y="256" fill="#e8eaf0" font-size="14" font-weight="700" text-anchor="middle"
@@ -549,14 +554,16 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
 
     <div class="map-legs">
       <span class="leg-city">SF</span>
-      <span class="leg-drive">🚗 3.5h · 190mi</span>
+      <span class="leg-drive">🚗 1.5h</span>
+      <span class="leg-city">나파</span>
+      <span class="leg-drive">🚗 4h · 200mi</span>
       <span class="leg-city">요세미티</span>
       <span class="leg-drive">🚗 7-8h · 380mi</span>
       <span class="leg-city">라스베가스</span>
       <span class="leg-drive">🚗 4-5h · 270mi</span>
       <span class="leg-city">LA</span>
     </div>
-    <div class="map-hint">지도의 지점을 누르면 해당 일정으로 이동합니다 · 총 주행 ~900mi</div>
+    <div class="map-hint">지도의 지점을 누르면 해당 일정으로 이동합니다 · 총 주행 ~1,000mi</div>
   </div>
 </div>
 
@@ -756,9 +763,8 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
 <script>
 /* ============ 기본 데이터 ============ */
 var DEFAULT_DAYS = [
-  {b:'sf', date:'9/11 (금) — 샌프란시스코 도착', sum:'SFO 도착 → 실리콘밸리 → 저녁식사', drive:'', memo:'', open:true, acts:[
-    {t:'15:30', n:'SFO 도착 · 렌트카 픽업', d:'알라모 SFO, AirTrain으로 렌트카센터 이동'},
-    {t:'17:00', n:'🍎 Apple Park Visitor Center', d:'Cupertino · 무료입장 · ~19:00까지 · 한정판 굿즈 구매 가능'},
+  {b:'sf', date:'9/11 (금) — 샌프란시스코 도착', sum:'SFO 도착 → 저녁식사', drive:'', memo:'렌트카는 9/13 오전 픽업 — 그 전엔 우버/BART로 이동', open:true, acts:[
+    {t:'15:30', n:'SFO 도착', d:'입국심사 후 호텔 체크인 · 렌트카 픽업은 9/13 07:00'},
     {t:'19:30', n:'🍽️ 피셔맨스워프 저녁식사', d:'클램차우더 필수! Boudin Bakery 추천', tag:'food'}
   ]},
   {b:'sf', date:'9/12 (토) — SF 시내 + ⚾ MLB', sum:'금문교 → 피어39 → 자이언츠 경기', drive:'', memo:'', open:false, acts:[
@@ -767,14 +773,17 @@ var DEFAULT_DAYS = [
     {t:'13:05', n:'⚾ 자이언츠 vs 패드리스 (Oracle Park)', d:'12:05 게이트 오픈 · 티켓 $35-80/인 · 만(灣) 뷰 야구장!', tag:'mlb'},
     {t:'17:00', n:'경기 후 자유시간 + 저녁', d:'차이나타운 or 노스비치 이탈리안'}
   ]},
-  {b:'yosemite', date:'9/13 (일) — SF → 요세미티', sum:'터널뷰 · 브라이들베일 폭포 · 밸리 산책', drive:'🚗 3.5h', memo:'', open:false, acts:[
-    {t:'오전', n:'SF 출발 → 요세미티 (I-580 → CA-120)', d:'약 190mi · 3.5시간'},
-    {t:'오후', n:'📸 터널뷰 → 브라이들베일 폭포 → 밸리뷰', d:'엘캐피탄+하프돔+폭포 한 프레임!', tag:'photo'},
-    {t:'—', n:'⚠️ 요세미티 입장료', d:'$35/차량 + $100/인 (비거주자 서차지, 2026 신규)', warn:true}
+  {b:'move', date:'9/13 (일) — 나파밸리 → 요세미티', sum:'렌트카 픽업 · 오퍼스 원 · 엘포털 이동', drive:'🚗 ~5.5h', memo:'', open:false, acts:[
+    {t:'07:00', n:'🚗 렌트카 픽업 (알라모 SFO)', d:'AirTrain으로 렌트카센터 이동 · 픽업 후 나파밸리로 출발 (~1.5h)'},
+    {t:'10:30', n:'🍷 Opus One 와이너리 테이스팅', d:'예약 완료 ✅ · Oakville · 운전자는 시음 최소화!', tag:'food', url:'https://www.opusonewinery.com', urlText:'Opus One'},
+    {t:'14:00', n:'요세미티(엘포털)로 출발', d:'14:00-15:00 사이 출발 · 나파 → CA-120 → El Portal · 약 200mi · 4시간'},
+    {t:'18:30', n:'🏨 Cedar Lodge 체크인 (El Portal)', d:'2박 예약 완료 ✅ (9/13-15) · 머세드강 옆 · 레스토랑'}
   ]},
-  {b:'yosemite', date:'9/14 (월) — 요세미티 종일 하이킹', sum:'Mist Trail · Vernal Fall · Mirror Lake', drive:'', memo:'', open:false, acts:[
+  {b:'yosemite', date:'9/14 (월) — 요세미티 종일', sum:'터널뷰 · Mist Trail · Glacier Point', drive:'', memo:'', open:false, acts:[
+    {t:'08:00', n:'📸 터널뷰 → 브라이들베일 폭포', d:'밸리 진입길에 관람 · 엘캐피탄+하프돔+폭포 한 프레임!', tag:'photo'},
     {t:'종일', n:'🥾 Mist Trail → Vernal Fall (왕복 3h)', d:'9월에도 수량 있는 폭포. 가이드 투어 옵션: $255/인'},
-    {t:'오후', n:'Mirror Lake · Glacier Point 드라이브', d:'Glacier Point에서 하프돔 정면 뷰'}
+    {t:'오후', n:'Mirror Lake · Glacier Point 드라이브', d:'Glacier Point에서 하프돔 정면 뷰'},
+    {t:'—', n:'⚠️ 요세미티 입장료', d:'$35/차량 + $100/인 (비거주자 서차지, 2026 신규)', warn:true}
   ]},
   {b:'move', date:'9/15 (화) — 요세미티 → 라스베거스', sum:'Tioga Pass · Alabama Hills · Death Valley', drive:'🚗 7-8h', memo:'', open:false, acts:[
     {t:'05:30', n:'이른 출발! Tioga Pass (해발 3,031m)', d:'요세미티 → US-395 남하'},
@@ -810,11 +819,10 @@ var DEFAULT_HOTELS = [
    details:'SFO에서 5분 · 시내까지 렌트카 20분\n무료조식 포함 · 약 $180/박',
    tags:'무료주차*, 무료조식*, 3.5★',
    links:[{text:'Hilton에서 예약 →', url:'https://www.hilton.com'}]},
-  {city:'요세미티 · 2박 (9/13-14)', name:'Yosemite View Lodge (El Portal)',
-   details:'밸리까지 차 15분 (가장 가까운 외부 숙소)\n야외풀 4개 · 레스토랑 · 약 $220/박',
-   tags:'무료주차*, 밸리 15분, 3.9★',
-   links:[{text:'공식 사이트 예약 →', url:'https://www.yosemiteresort.us'},
-          {text:'Airbnb 캐빈 대안 →', url:'https://www.airbnb.com/s/El-Portal--CA'}]},
+  {city:'요세미티 · 2박 (9/13-15)', name:'Cedar Lodge (El Portal) — 예약 완료 ✅',
+   details:'밸리까지 차 ~30분 · 머세드강 옆\n레스토랑 · 야외풀 · 9/15 체크아웃',
+   tags:'예약완료*, 무료주차*, 밸리 30분',
+   links:[{text:'📍 위치 보기 →', url:'https://maps.google.com/?q=Cedar+Lodge+El+Portal+CA'}]},
   {city:'라스베거스 · 2박 (9/15-16)', name:'MGM 올인클루시브 (Luxor / Excalibur)',
    details:'2박 + 6끼 식사 + 쇼 2장 + 주차 포함\n$330~/2인 2박 (세전) · 리조트피 면제',
    tags:'식사포함*, 무료주차*, 쇼 포함*',
@@ -832,7 +840,7 @@ var DEFAULT_BUDGET = {
   sub: '$2,100 + 항공 114만원 + 기타 8만원 | 환율 $1=₩1,400',
   items: [
     {label:'✈️ 항공 (1인)', value:'114.5만', note:'아시아나 왕복'},
-    {label:'🚗 렌트+주유', value:'~$625', note:'알라모 SUV 8일 편도'},
+    {label:'🚗 렌트+주유', value:'~$625', note:'알라모 SUV 7일 편도'},
     {label:'🏨 숙박 8박', value:'~$1,580', note:'2인 1실 합계'},
     {label:'🎫 입장료', value:'~$405', note:'요세미티+DV+기타'},
     {label:'⚾ MLB 티켓', value:'~$120', note:'자이언츠 2매'},
@@ -844,9 +852,9 @@ var DEFAULT_BUDGET = {
 
 var DEFAULT_LINKS = [
   {icon:'🛂', title:'ESTA 신청 (2인 각각)', desc:'$40/인 · 72시간 전 필수 · 공식 사이트에서만 신청', url:'https://esta.cbp.dhs.gov', pri:'urgent', priText:'즉시'},
-  {icon:'🏔️', title:'요세미티 숙소 예약 (2박)', desc:'Yosemite View Lodge · El Portal', url:'https://www.yosemiteresort.us', pri:'urgent', priText:'즉시'},
+  {icon:'🏔️', title:'✅ 요세미티 숙소 — Cedar Lodge (완료)', desc:'El Portal · 2박 (9/13-15) 예약 완료', url:'https://maps.google.com/?q=Cedar+Lodge+El+Portal+CA', pri:'', priText:''},
   {icon:'🎰', title:'LV 올인클루시브 예약 (2박)', desc:'MGM Luxor/Excalibur · 식사+쇼+주차 포함', url:'https://www.mgmresorts.com/en/offers/all-inclusive.html', pri:'urgent', priText:'즉시'},
-  {icon:'🚗', title:'렌트카 예약 (알라모)', desc:'SFO 픽업 → LAX 반납 · SUV · 8일', url:'https://www.alamo.com', pri:'soon', priText:'2주전'},
+  {icon:'🚗', title:'✅ 렌트카 (알라모) — 변경 완료', desc:'9/13 07:00 SFO 픽업 → 9/19 LAX 반납 · SUV · 7일', url:'https://www.alamo.com', pri:'', priText:''},
   {icon:'⚾', title:'자이언츠 티켓 구매 (9/12)', desc:'vs 패드리스 · Oracle Park · 13:05 · $35~/인', url:'https://seatgeek.com/giants-padres-tickets', pri:'soon', priText:'2주전'},
   {icon:'🏞️', title:'요세미티 입장료 사전구매', desc:'$35/차량 + $100/인 (비거주자)', url:'https://www.recreation.gov', pri:'soon', priText:'2주전'},
   {icon:'📱', title:'미국 eSIM 구매', desc:'Airalo · 8일+ 데이터 · 출발 전 설치', url:'https://www.airalo.com', pri:'soon', priText:'1주전'}
@@ -854,9 +862,10 @@ var DEFAULT_LINKS = [
 
 var DEFAULT_CHECKS = [
   {text:'ESTA 신청 (2인 각각, $40/인)', done:false},
-  {text:'요세미티 숙소 예약 (El Portal, 2박)', done:false},
+  {text:'요세미티 숙소 — Cedar Lodge 예약 (2박, 9/13-15)', done:true},
+  {text:'🍷 오퍼스 원 테이스팅 예약 (9/13 10:30)', done:true},
   {text:'LV 올인클루시브 패키지 예약', done:false},
-  {text:'렌트카 예약 (알라모 SFO→LAX)', done:false},
+  {text:'렌트카 예약 (알라모, 9/13 07:00 SFO 픽업)', done:true},
   {text:'SF 호텔 예약 (Burlingame, 2박)', done:false},
   {text:'LA 호텔 예약 (Hollywood, 2박)', done:false},
   {text:'⚾ 자이언츠 티켓 구매 (9/12, 2매)', done:false},
@@ -867,7 +876,7 @@ var DEFAULT_CHECKS = [
 ];
 
 /* ============ 상태 / 저장 ============ */
-var KEY = 'usTrip2026.v3';
+var KEY = 'usTrip2026.v4';
 var TAGS = { food:'FOOD', mlb:'MLB', shop:'SHOP', photo:'PHOTO', warn:'주의' };
 var editMode = false, flash = null;
 var editing = null, editingHotel = -1, editingLink = -1, editingNote = -1, resetArm = 0;
@@ -900,8 +909,6 @@ var state = (function () {
     try {
       var s = JSON.parse(localStorage.getItem(KEY));
       if (s && s.days) return fill(s);
-      var old = JSON.parse(localStorage.getItem('usTrip2026.v2'));
-      if (old && old.days) return fill(old);
     } catch (e) {}
   }
   return freshState();

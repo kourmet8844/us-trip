@@ -315,6 +315,8 @@ body.editing [data-p]:focus { outline: 1px solid var(--accent); }
 .leg-city { font-weight: 700; color: var(--text); }
 .leg-drive { font-size: 11px; font-weight: 600; color: var(--orange); background: rgba(255,140,66,0.1); padding: 2px 8px; border-radius: 99px; white-space: nowrap; }
 .map-hint { font-size: 11px; color: var(--text2); text-align: center; margin-top: 10px; }
+.map-links { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+.map-links .hotel-link { font-size: 11px; padding: 5px 12px; }
 
 /* Itinerary editing */
 .itin-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
@@ -563,7 +565,12 @@ body.editing .day-memo:empty::before { content: '📝 이 날의 메모를 입�
       <span class="leg-drive">🚗 4-5h · 270mi</span>
       <span class="leg-city">LA</span>
     </div>
-    <div class="map-hint">지도의 지점을 누르면 해당 일정으로 이동합니다 · 총 주행 ~1,000mi</div>
+    <div class="map-links">
+      <a class="hotel-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=San+Francisco+International+Airport&amp;destination=Cedar+Lodge,+El+Portal,+CA&amp;waypoints=Opus+One+Winery,+Oakville,+CA">🗺️ 9/13 나파→엘포털</a>
+      <a class="hotel-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Cedar+Lodge,+El+Portal,+CA&amp;destination=Las+Vegas,+NV&amp;waypoints=Tioga+Pass+Entrance+Station%7CAlabama+Hills,+Lone+Pine,+CA%7CZabriskie+Point%7CBadwater+Basin">🗺️ 9/15 요세미티→베가스</a>
+      <a class="hotel-link" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;origin=Las+Vegas,+NV&amp;destination=Griffith+Observatory&amp;waypoints=Seven+Magic+Mountains%7COutlets+at+Barstow">🗺️ 9/17 베가스→LA</a>
+    </div>
+    <div class="map-hint">지도의 지점을 누르면 해당 일정으로 이동 · 버튼은 구글맵 내비로 연결 · 총 주행 ~1,000mi</div>
   </div>
 </div>
 
